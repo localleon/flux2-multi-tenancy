@@ -72,8 +72,9 @@ Install the Flux CLI and fork this repository on your personal GitHub account
 and export your GitHub username and repo name:
 
 ```sh
-export GITHUB_USER=<your-username>
-export GITHUB_REPO=<repository-name>
+curl -s https://fluxcd.io/install.sh | sudo bash
+export GITHUB_USER=localleon
+export GITHUB_REPO=flux2-multi-tenancy
 ```
 
 Verify that your staging cluster satisfies the prerequisites with:
@@ -167,8 +168,8 @@ Create the sync manifests for the tenant Git repository:
 ```sh
 flux create source git dev-team \
     --namespace=apps \
-    --url=https://github.com/<org>/<dev-team> \
-    --branch=main \
+    --url=https://github.com/localleon/flux2-multi-tenancy \
+    --branch=dev-team \
     --export > ./tenants/base/dev-team/sync.yaml
 
 flux create kustomization dev-team \
